@@ -3,7 +3,7 @@
 ob_start();
 
 include "partials/header.php";
-include "config/db.php";
+// include "config/db.php";
 
 // NOTRE LOGIN
         
