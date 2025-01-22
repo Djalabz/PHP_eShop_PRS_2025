@@ -27,7 +27,10 @@
     <a class="mr-4" href="contact.php">Contact</a>
   </nav>
 
-  <a class="absolute right-8 rounded border border-black px-2 py-1" href="./login.php">Login</a>
+  <div class="profile absolute right-8 flex items-center">
+    <a class="rounded border border-black px-2 py-1 h-8 mr-4" href="./login.php">Login</a>
+    <a href="#"><img class="logo rounded-full w-12 mr-2" src="./uploads/avatars/mscott.png"></a>
+  </div>
 
 </header>
 
