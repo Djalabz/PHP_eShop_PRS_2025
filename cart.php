@@ -4,22 +4,51 @@ include "partials/header.php";
 include "config/curl.php";
 
 // On va reprendre le mécanisme ci-dessous sauf que le tableau des items du caddie (leur id)
-// sera sauvergardé dans les cookies.
+// sera sauvergardé dans les cookies. On utilisera la superglobale $_COOKIE
 
 if (isset($_GET["item"])) {
-    echo $_GET["item"];
-    // Ajouter l'id de l'item en SESSION ou en COOKIES
-    $itemIds[] = $_GET["item"];
+    // Donc enlever cette ligne et la remplacer par les instructions adéquates 
+    // pour enregistrer dans les Cookies
+    if (!isset($_COOKIE["cart"])) {
+
+        $ids = [];
+        $ids[] = $_GET["item"];
+        $ids = json_encode($ids);
+        setcookie("cart", $ids, time() + 60 * 10);
+
+    } else {
+
+        $ids = json_decode($_COOKIE["cart"]);
+
+        var_dump($ids);
+
+        $ids[] = $_GET["item"];
+        $ids = json_encode($ids);
+        
+
+        var_dump($ids);
+
+
+        setcookie("cart", $ids, time() + 60 * 10);
+    }
+   
+
+    
+
+    
 }
 
 ?>
 
-<h1>Votre page de caddie</h1>
+<h1>Page du panier</h1>
 
 <section class="cart">
 
+    <!-- Ici afficher une phrase du type "Le panier contient XX articles" -->
+
     <?php foreach($decoded as $item) : ?> 
-        <?php if (in_array($item->id, $itemIds)) : ?>
+
+        <?php if (in_array($item->id, json_decode($_COOKIE["cart"]))) : ?>
 
             <div class="product">
                 <p><?= $item->id ?></p>

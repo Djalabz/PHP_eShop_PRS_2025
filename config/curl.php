@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 // CURL avec PHP
 // Dans ce fichier curl.php on va communiquer (grace à curl) avec une API (Platzi Fake Store)
 
-// Pour communiquer avec une API on aura besoin d'un "endpoint" cad un lien qui va nous renvoyer 
-// les infos désirées sous le format JSON. 
+// Pour communiquer avec une API on aura besoin d'un "endpoint" cad un lien qui va nous renvoyer
+// les infos désirées sous le format JSON.
 
-// Le JSON est le format de prédilection pour envoyer ou recevoir des données vers une API. 
+// Le JSON est le format de prédilection pour envoyer ou recevoir des données vers une API.
 // Il conviendra donc de le traduire (JSON->Tableau associatif) afin d'utiliser les données recues.
 
 // On initialise une "session" curl -> on démarre l'outil
@@ -14,6 +14,7 @@ $ch = curl_init();
 
 // On vient préciser l'URL duquel on va récupérer nos données (ici nos produits pour le shop)
 $url = 'https://api.escuelajs.co/api/v1/products';
+// $url = "https://fakestoreapi.com/products";
 
 // Mettre en place les options pour CURL
 

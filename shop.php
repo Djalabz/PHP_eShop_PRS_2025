@@ -3,7 +3,6 @@
 include "partials/header.php";
 include "config/curl.php";
 
-
 // echo "<pre>";
 // print_r($decoded);
 // echo "</pre>";
@@ -32,7 +31,7 @@ include "config/curl.php";
                 <h3><?= $item->price . " $"?></h3>
                 <h4><?= substr($item->description, 0, 120) . " ..." ?></h4>
 
-                
+
                 <a href="cart.php?item=<?= $item->id ?>"><button class="rounded border border-black px-2 py-1">Ajouter au panier</button></a>
             </div>
 
