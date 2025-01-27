@@ -7,37 +7,56 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
+include "contact.php";
 include "env.php";
 
 
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
-try {
-    //Server settings                     
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = $_ENV["email"];                     //SMTP username
-    $mail->Password   = $_ENV["password"];                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+  if (!empty($_POST["email"]) || !empty($_POST["username"]) || !empty($_POST["subject"]) || !empty($_POST["message"])) {
 
-    //Recipients
-    $mail->setFrom($email, $username);
-    $mail->addAddress($_ENV["email"], "C'est nous");        //Name is optional
-  //Optional name
+      if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = $subject;
-    $mail->Body    = $message;
+          $email = $_POST["email"];
+          $username = htmlspecialchars($_POST["username"]);
+          $subject = htmlspecialchars($_POST["subject"]);
+          $message = htmlspecialchars($_POST["message"]);
+      
+          //Create an instance; passing `true` enables exceptions
+          $mail = new PHPMailer(true);
 
-    $mail->send();
+          try {
+              //Server settings                     
+              $mail->isSMTP();                                            //Send using SMTP
+              $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+              $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+              $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+              $mail->Username   = $_ENV["email"];                     //SMTP username
+              $mail->Password   = $_ENV["password"];                               //SMTP password
+              $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 
-    echo 'Message has been sent';
+              //Recipients
+              $mail->setFrom($_POST["email"], $_POST["username"]);
+              $mail->addAddress($mail->Username, "Romain Jalabert");        //Name is optional
+            //Optional name
 
-} catch (Exception $e) {
-    
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+              //Content                               //Set email format to HTML
+              $mail->Subject = $_POST["subject"];
+              $mail->Body    = $_POST["message"];
+
+              $mail->send();
+
+              echo "Message has been sent to $mail->Username";
+
+          } catch (Exception $e) {
+
+              echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+          }
+      }  else {
+          $error = "Veuillez entrer un email valide";
+      }
+  } else {
+      $error = "Veuillez remplir tous les champs";
+  }
 }
+

@@ -2,32 +2,6 @@
 
 include "partials/header.php";
 
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
-    if (!empty($_POST["email"]) || !empty($_POST["username"]) || !empty($_POST["subject"]) || !empty($_POST["message"])) {
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-            $email = $_POST["email"];
-            $username = htmlspecialchars($_POST["username"]);
-            $subject = htmlspecialchars($_POST["subject"]);
-            $message = htmlspecialchars($_POST["message"]);
-        
-            // Renvoyer les infos récuperées vers la page de contact-process.php qui va traiter 
-            // le processus de contact
-            header("Location: contact-process.php");
-            exit;
-
-        }  else {
-            $error = "Veuillez entrer un email valide";
-        }
-
-
-    } else {
-        $error = "Veuillez remplir tous les champs";
-    }
-}
-
 ?>
 
 
@@ -35,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
     <h1 class="text-center mb-10 font-bold">Page de contact</h1>
     
-    <form class="flex flex-col" action="#" method="POST">
+    <form class="flex flex-col" action="contact-process.php" method="POST">
     
         <label for="email">Votre email :</label>
         <input class="border mb-4" id="email" type="email" name="email">
