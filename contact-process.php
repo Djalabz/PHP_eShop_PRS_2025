@@ -7,6 +7,8 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
+include "env.php";
+
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -17,8 +19,8 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'djalabz@gmail.com';                     //SMTP username
-    $mail->Password   = 'votre mot de passe';                               //SMTP password
+    $mail->Username   = $_ENV["email"];                     //SMTP username
+    $mail->Password   = $_ENV["password"];                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 
     //Recipients

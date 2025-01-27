@@ -1,14 +1,25 @@
 <?php 
 
-include "partials/header.php"
+include "partials/header.php";
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
     if (!empty($_POST["email"]) || !empty($_POST["username"]) || !empty($_POST["subject"]) || !empty($_POST["message"])) {
 
-       $email = $_POST["email"];
-       $username = $_POST["username"];
-       $subject = $_POST["subject"];
-       $message = $_POST["message"];
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+
+            $email = $_POST["email"];
+            $username = htmlspecialchars($_POST["username"]);
+            $subject = htmlspecialchars($_POST["subject"]);
+            $message = htmlspecialchars($_POST["message"]);
+        
+            // Renvoyer les infos récuperées vers la page de contact-process.php qui va traiter 
+            // le processus de contact
+
+        }  else {
+            $error = "Veuillez entrer un email valide";
+        }
+
 
     } else {
         $error = "Veuillez remplir tous les champs";
