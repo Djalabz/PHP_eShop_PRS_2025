@@ -16,7 +16,6 @@
 </body>
 </html>
 
-
 <header class="w-screen flex items-center h-20 relative">
 
   <img src="./assets/fouine-noBg.png" alt="" class="logo w-12 mr-2">

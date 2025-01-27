@@ -8,8 +8,12 @@
 // Chaque user crée aura les propriétés définies dans la classe ainsi que les méthodes.
 class User {
     // Ici ce sont les propriétes / attributs (en gros ce sont les variables propre à chaque User)
-    public $name;
-    public $email;
+    // On précise devant les variables les portées qui vont déterminer les endroits ou on peut accéder à ces variables
+    // public : on accède aux propriétés dans la classe, en dehors de celle-ci et au sein des enfants 
+    // proptected : on accède aux propriétés dans la classe, au sein des enfant mais PAS EN DEHORS
+    // private : On a accès aux propriétés seulement dans la Classe 
+    private $name;
+    private $email;
     public $age;
 
     // Avec la fonction de type construct (qui s'éxecute automatiquement lors de l'instanciation de la classe)
@@ -24,7 +28,7 @@ class User {
     }
     
     // Ici ce sont mes méthodes (fonctions) propre à chaque User
-    public function sayHello($param) {
+    public function" sayHello($param) "{
         echo "Bonjour " . $param . " vous avez " . $this->age;
     }
 }
@@ -36,6 +40,8 @@ $Jane = new User("Jane", "lemail", 35);
 $tim = new User("Tim", "email", 25);
 
 $john->sayHello("le canard");
+
+echo $john->email; 
 
 class Admin extends User {
     // Ici ma classe Admin pourra hériter des propriétés et méthodes de User (si elles sont public ou protected)

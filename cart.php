@@ -24,10 +24,8 @@ if (isset($_GET["item"])) {
 
         $ids[] = $_GET["item"];
         $ids = json_encode($ids);
-        
 
         var_dump($ids);
-
 
         setcookie("cart", $ids, time() + 60 * 10);
     }
