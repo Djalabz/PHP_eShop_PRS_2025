@@ -24,9 +24,8 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
 
     //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient            //Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
+    $mail->setFrom($email, $username);
+    $mail->addAddress($_ENV["email"], "C'est nous");        //Name is optional
   //Optional name
 
     //Content
@@ -35,7 +34,10 @@ try {
     $mail->Body    = $message;
 
     $mail->send();
+
     echo 'Message has been sent';
+
 } catch (Exception $e) {
+    
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

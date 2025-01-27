@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
         
             // Renvoyer les infos récuperées vers la page de contact-process.php qui va traiter 
             // le processus de contact
+            header("Location: contact-process.php");
+            exit;
 
         }  else {
             $error = "Veuillez entrer un email valide";
