@@ -5,7 +5,10 @@ include "partials/header.php"
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
     if (!empty($_POST["email"]) || !empty($_POST["username"]) || !empty($_POST["subject"]) || !empty($_POST["message"])) {
 
-        // Logique pour soumettre le formulaire et envoyer le mail 
+       $email = $_POST["email"];
+       $username = $_POST["username"];
+       $subject = $_POST["subject"];
+       $message = $_POST["message"];
 
     } else {
         $error = "Veuillez remplir tous les champs";
