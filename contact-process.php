@@ -10,7 +10,7 @@ require 'vendor/autoload.php';
 include "contact.php";
 include "env.php";
 
-// Comme d'hab on vérifie que le form du contact.php (inclus au dessus) ait bien été soumis
+// Comme d'hab on vérifie que le form du contact.php (inclus au dessus) ait bien été envoyé
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["submit"])) {
 
   // On vérirife que les champs ne soient pas vides 

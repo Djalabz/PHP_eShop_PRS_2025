@@ -28,7 +28,7 @@ class User {
     }
     
     // Ici ce sont mes méthodes (fonctions) propre à chaque User
-    public function" sayHello($param) "{
+    public function sayHello($param) {
         echo "Bonjour " . $param . " vous avez " . $this->age;
     }
 }
@@ -41,8 +41,40 @@ $tim = new User("Tim", "email", 25);
 
 $john->sayHello("le canard");
 
-echo $john->email; 
+// echo $john->email; 
 
-class Admin extends User {
-    // Ici ma classe Admin pourra hériter des propriétés et méthodes de User (si elles sont public ou protected)
+
+class Animal {
+    // Propriétés (variables)
+    public $type;
+    public $age;
+    public $color;
+
+
+    public function __construct($typeParam, $ageParam, $colorParam) {
+        $this->type = $typeParam;
+        $this->age = $ageParam;
+        $this->color = $colorParam;
+    }
+
+    // Méthodes (fonctions)
+    public function eat() {
+        echo "Le $this->type mange";
+    }
 }
+
+// Avec new j'instancie la classe cad je crée un objet
+$cat = new Animal("chat", 8, "orange");
+$dog = new Animal("chien", 10, "noir");
+
+echo "<br>";
+echo $cat->color;
+echo "<br>";
+$cat->eat();
+
+
+
+// La classe Mammal (mammifère) a pour parent la classe Animals
+class Mammals extends Animal {
+
+} 
